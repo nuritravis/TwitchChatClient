@@ -1,8 +1,11 @@
 import websockets
 import asyncio
+from dotenv import load_dotenv
+import os
 
-OAUTH_TOKEN = "trcg86uh0afabbjnm9cbs6dy3ni9ss"      
-USERNAME = "nnurrii"            
+load_dotenv()
+OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")     
+USERNAME = os.getenv("USERNAME")           
             
 
 async def main():
