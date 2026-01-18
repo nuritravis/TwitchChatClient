@@ -22,15 +22,20 @@ async def main():
         while True:
             message = await ws.recv()
 
-            # A single recv can contain multiple IRC lines
+            # a single recv can contain multiple IRC lines
             for line in message.split("\r\n"):
                 if not line:
                     continue
+                
+                parsed = irc_parser.parse_line(line)
+                
+                if parsed:
+                    #user = irc_parser.get_user(parsed)
+                    #print(f"{user}: {parsed[2]}")
+                    msg_body = parsed[2]
+                    print(msg_body)
 
-                if (irc_parser.parse_line(line)):
-                    print(irc_parser.parse_line(line)[2])
-
-                # Respond to PING to stay connected
+                # respond to PING to stay connected
                 if line.startswith("PING"):
                     await ws.send(line.replace("PING", "PONG") + "\r\n")
 
