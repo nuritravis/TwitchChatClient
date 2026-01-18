@@ -2,6 +2,7 @@ import websockets
 import asyncio
 from dotenv import load_dotenv
 import os
+import irc_parser
 
 load_dotenv()
 OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")     
@@ -26,7 +27,7 @@ async def main():
                 if not line:
                     continue
 
-                print(line)
+                print(irc_parser.parse_msg(line))
 
                 # Respond to PING to stay connected
                 if line.startswith("PING"):
