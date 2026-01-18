@@ -27,13 +27,12 @@ async def main():
                 if not line:
                     continue
                 
-                parsed = irc_parser.parse_line(line)
+                parsed_msg = irc_parser.parse_line(line)
                 
-                if parsed:
-                    #user = irc_parser.get_user(parsed)
-                    #print(f"{user}: {parsed[2]}")
-                    msg_body = parsed[2]
-                    print(msg_body)
+                if parsed_msg is not None and parsed_msg[1][1] == "PRIVMSG":
+                    user = irc_parser.get_user(parsed_msg)
+                    print(f"{user}: {parsed_msg[2]}")
+
 
                 # respond to PING to stay connected
                 if line.startswith("PING"):
