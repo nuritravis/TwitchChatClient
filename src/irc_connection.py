@@ -27,7 +27,8 @@ async def main():
                 if not line:
                     continue
 
-                print(irc_parser.parse_msg(line))
+                if (irc_parser.parse_line(line)):
+                    print(irc_parser.parse_line(line)[2])
 
                 # Respond to PING to stay connected
                 if line.startswith("PING"):
