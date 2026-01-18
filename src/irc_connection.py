@@ -6,10 +6,10 @@ import os
 load_dotenv()
 OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")     
 USERNAME = os.getenv("USERNAME")           
-            
+CHANNEL = str(input("Channel: "))          
 
 async def main():
-    CHANNEL = str(input("Channel: "))  
+
     uri = "wss://irc-ws.chat.twitch.tv:443"
     async with websockets.connect(uri) as ws:
         await ws.send("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership\r\n")
