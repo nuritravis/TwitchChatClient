@@ -24,7 +24,7 @@ def parse_line(msg: str) -> tuple:
 
     return line_tags, line_data, line_body
 
-def get_user(msg: str)->str:
+def get_user(msg: tuple)->str:
     username = msg[1][0]
     username = username[username.index(":")+1:username.index("!")]
     return username
