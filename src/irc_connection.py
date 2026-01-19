@@ -7,7 +7,11 @@ import irc_parser
 load_dotenv()
 OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")     
 USERNAME = os.getenv("USERNAME")           
-CHANNEL = str(input("Channel: "))          
+CHANNEL = str(input("Channel: "))      
+
+def msg_constructor(msg: str):
+    irc_msg = f'PRIVMSG #{CHANNEL} :{msg} \r\n'
+    return irc_msg
 
 async def main():
 
