@@ -25,8 +25,7 @@ def parse_line(msg: str) -> tuple:
     return line_tags, line_data, line_body
 
 def get_user(msg: tuple)->str:
-    username = msg[1][0]
-    username = username[username.index(":")+1:username.index("!")]
+    username = msg[0]["display-name"]
     return username
 
 if __name__ == "__main__":
@@ -36,6 +35,7 @@ if __name__ == "__main__":
     print("\n")
     print(parse_line(dummy2)[1][0])
     print(get_user(parse_line(dummy2)))
+    print(parse_line(dummy2)[0]["display-name"])
     print("\n")
-    print(parse_line(dummy2))
+    #print(parse_line(dummy2))
     print("\n")
